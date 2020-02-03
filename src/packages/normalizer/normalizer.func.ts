@@ -1,8 +1,9 @@
-import { isObject, isArray, camelCase } from 'lodash';
-import IDeserialized from "src/meta/deserialized.interface";
+import { isObject, isArray, camelCase } from "lodash";
+import IDeserialized from "../../meta/deserialized.interface";
 
 export const normalize = (deserializedData: IDeserialized): IDeserialized => {
-  const normalizeGivenObject = (object: any): void => { // eslint-disable-line
+  const normalizeGivenObject = (object: any): void => {
+    // eslint-disable-line
     for (const key in object) {
       let attrs, relationships, data;
 
@@ -67,7 +68,11 @@ export const normalize = (deserializedData: IDeserialized): IDeserialized => {
       // Convert all object key values to camelCase variants
       const keyToCamelCase = camelCase(key);
       if (key !== keyToCamelCase) {
-        Object.defineProperty(object, keyToCamelCase, Object.getOwnPropertyDescriptor(object, key));
+        Object.defineProperty(
+          object,
+          keyToCamelCase,
+          Object.getOwnPropertyDescriptor(object, key)
+        );
         delete object[key];
       }
 
